@@ -4,11 +4,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
-env:
-  DOCKER_BUILDKIT: ${{ matrix.cache }} 
-  COMPOSE_DOCKER_CLI_BUILD: ${{ matrix.cache }} 
-
 jobs:
   build:
     defaults:
@@ -24,4 +19,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run a multi-line script
         run: |
-          docker-compose up
+          DOCKER_BUILDKIT=${{ matrix.cache }} COMPOSE_DOCKER_CLI_BUILD=${{ matrix.cache }} docker-compose up

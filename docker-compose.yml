@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  alpine:
+    build:
+      context: ./alpine
+      dockerfile: Dockerfile
+      args:
+        image_tag: 3.8.5-alpine3.12
+    tty: true

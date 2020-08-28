@@ -5,10 +5,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  DOCKER_BUILDKIT: 1
-  COMPOSE_DOCKER_CLI_BUILD: 1
-
 jobs:
   build:
     defaults:
@@ -16,8 +12,12 @@ jobs:
         shell: bash
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        cache: [0, 1]
+
     steps:
       - uses: actions/checkout@v2
       - name: Run a multi-line script
         run: |
-          docker-compose up
+          DOCKER_BUILDKIT=${{ matrix.cache }} COMPOSE_DOCKER_CLI_BUILD=${{ matrix.cache }}docker-compose up

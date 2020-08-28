@@ -4,6 +4,7 @@ WORKDIR /root
 RUN apk --update-cache \
     add musl \
     linux-headers \
+    libjpeg \
     gcc \
     g++ \
     make \

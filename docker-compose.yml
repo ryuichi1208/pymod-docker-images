@@ -1,4 +1,9 @@
 version: '3.8'
+
+x-buster: &buste_conf
+  context: ./buster
+  dockerfile: Dockerfile
+
 services:
   alpine:
     build:
@@ -7,3 +12,6 @@ services:
       args:
         image_tag: 3.8.5-alpine3.12
     tty: true
+
+  buster:
+    build: *buste_conf
